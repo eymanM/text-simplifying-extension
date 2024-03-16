@@ -1,4 +1,4 @@
-import { Button } from "../@/components/ui/button.tsx"
+const [Button] = require("../@/components/ui/button.tsx")
 
 var bubbleDOM = document.createElement('div');
 bubbleDOM.setAttribute('class', 'selection_bubble');
@@ -37,7 +37,7 @@ function renderBubble(mouseX, mouseY, selection) {
   //   method: 'POST',
   //   headers: {
   //     'Content-Type': 'application/json',
-  //     'Authorization': `Bearer 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`
+  //     'Authorization': `Bear`
   //   },
   //   body: JSON.stringify(data)
   // }).then(response => response.json())
