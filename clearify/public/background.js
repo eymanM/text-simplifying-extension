@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendCallback) => {
   // const selection = window.getSelection();
   // const range = selection.getRangeAt(0);
   // const selectedText = range.extractContents();
-  const span = document.createElement('span');
-  span.appendChild(message.selectedText);
-  span.style.backgroundColor = 'yellow';
+  //const span = document.createElement('span');
+  //span.appendChild(message.selectedText);
+  //span.style.backgroundColor = 'yellow';
 });
