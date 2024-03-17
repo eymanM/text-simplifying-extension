@@ -16,6 +16,8 @@ bubbleDOM.style.textAlign = 'center';
 bubbleDOM.style.border = '2px solid black';
 bubbleDOM.style.position = 'absolute';
 bubbleDOM.style.zIndex = '1000000';
+bubbleDOM.style.fontFamily = 'Arial, sans-serif';
+bubbleDOM.style.fontSize = '19px';
 
 // Add hover effect
 bubbleDOM.addEventListener('mouseenter', function() {
