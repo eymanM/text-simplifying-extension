@@ -1,5 +1,7 @@
+
 var bubbleDOM = document.createElement('div');
 bubbleDOM.setAttribute('class', 'selection_bubble');
+
 document.body.appendChild(bubbleDOM);
 bubbleDOM.style.visibility = 'hidden';
 // Apply styles using JavaScript
@@ -12,6 +14,8 @@ bubbleDOM.style.transition = 'transform 0.3s ease';
 bubbleDOM.style.maxWidth = '700px';
 bubbleDOM.style.textAlign = 'center';
 bubbleDOM.style.border = '2px solid black';
+bubbleDOM.style.position = 'absolute';
+bubbleDOM.style.zIndex = '1000000';
 
 // Add hover effect
 bubbleDOM.addEventListener('mouseenter', function() {
@@ -21,6 +25,7 @@ bubbleDOM.addEventListener('mouseenter', function() {
 bubbleDOM.addEventListener('mouseleave', function() {
     bubbleDOM.style.transform = 'scale(1)';
 });
+
 
 document.addEventListener('mouseup', (e) => {
   const selectedText = window.getSelection().toString();
@@ -80,8 +85,8 @@ function renderBubble(mouseX, mouseY, selection) {
         "content": selection
       }
     ],
-    "temperature": 0.8,
-    "max_tokens": 4000,
+    "temperature": 0.6,
+    "max_tokens": 9000,
     "top_p": 1,
     "stop": null,
     "stream": false
@@ -106,7 +111,6 @@ function renderBubble(mouseX, mouseY, selection) {
       bubbleDOM.style.top = mouseY + 'px';
       bubbleDOM.style.left = mouseX + 'px';
       bubbleDOM.style.visibility = 'visible';
-      bubbleDOM.style.position = 'absolute';
     })
     .catch(error => console.error('Error:', error));
 
