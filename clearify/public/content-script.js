@@ -40,12 +40,20 @@ document.addEventListener('mousedown', function (e) {
   bubbleDOM.style.visibility = 'hidden';
 }, false);
 
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    console.log(msg)
+    console.log(sender)
+    console.log(sendResponse    )
+    console.log(localStorage.getItem('summarize'))
+
+})
+
 // Move that bubble to the appropriate location.
 function renderBubble(mouseX, mouseY, selection) {
   // const data = {
   //   model: "gpt-4-turbo-preview",
-  //   messages: [{role: "user", content: `Simplify selected text for people with dislexia in a way that is easy to understand and: 
-    
+  //   messages: [{role: "user", content: `Simplify selected text for people with dislexia in a way that is easy to understand and:
+
   //   ====
   //   ${selection}`}],
   //   temperature: 0.9
@@ -54,10 +62,10 @@ function renderBubble(mouseX, mouseY, selection) {
   const data = {
     "model": "mixtral-8x7b-32768",
     "messages": [
-      
+
       {
         "role": "system",
-        "content": `Act as a system do rewriting text. Your only task is to rephrase and format the following text in a way that is easy to understand for dislexic people and make the text shorter without changing the context. Use active voice when rephrasing the word and it would be the best to use 60-80 characters per sentence. Avoid abbreviations where possible. Return only text. Bold the words that are important or meaning to the text.`
+        "content": `Act as a system do rewriting text. Your only task is to rephrase and format the following text in a way that is easy to understand for dyslexic people and make the text shorter without changing the context. Use active voice when rephrasing the word and it would be the best to use 60-80 characters per sentence. Avoid abbreviations where possible. Return only text. Bold the words that are important or meaning to the text.`
       },
       {
           "role": "user",

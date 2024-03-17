@@ -9,7 +9,9 @@
     "scripting",
     "activeTab",
     "storage",
-    "background"
+    "background",
+    "tts",
+    "contextMenus"
 
   ],
   "host_permissions": [
