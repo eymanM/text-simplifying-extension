@@ -2,7 +2,6 @@
 var bubbleDOM = document.createElement('div');
 bubbleDOM.setAttribute('class', 'selection_bubble');
 
-document.body.appendChild(bubbleDOM);
 bubbleDOM.style.visibility = 'hidden';
 // Apply styles using JavaScript
 bubbleDOM.style.padding = '20px';
@@ -15,9 +14,30 @@ bubbleDOM.style.maxWidth = '700px';
 bubbleDOM.style.textAlign = 'center';
 bubbleDOM.style.border = '2px solid black';
 bubbleDOM.style.position = 'absolute';
-bubbleDOM.style.zIndex = '1000000';
+bubbleDOM.style.zIndex = '1000000000';
 bubbleDOM.style.fontFamily = 'Arial, sans-serif';
 bubbleDOM.style.fontSize = '19px';
+
+let isDragging = false;
+let initialX;
+let initialY;
+
+bubbleDOM.addEventListener('mousedown', function(e) {
+  isDragging = true;
+  initialX = e.clientX - bubbleDOM.getBoundingClientRect().left;
+  initialY = e.clientY - bubbleDOM.getBoundingClientRect().top;
+});
+
+document.addEventListener('mousemove', function(e) {
+  if (isDragging) {
+    const newX = e.clientX - initialX;
+    const newY = e.clientY - initialY;
+    bubbleDOM.style.left = newX + 'px';
+    bubbleDOM.style.top = newY + 'px';
+  }
+});
+
+document.body.appendChild(bubbleDOM);
 
 // Add hover effect
 bubbleDOM.addEventListener('mouseenter', function() {
@@ -30,8 +50,10 @@ bubbleDOM.addEventListener('mouseleave', function() {
 
 
 document.addEventListener('mouseup', (e) => {
+  isDragging = false;
+
   const selectedText = window.getSelection().toString();
-  if (selectedText.length > 0) {
+  if (selectedText.length > 0 && e.target != bubbleDOM) {
     const selectionRange = window.getSelection().getRangeAt(0);
     const boundingRect = selectionRange.getBoundingClientRect();
 
@@ -44,7 +66,10 @@ document.addEventListener('mouseup', (e) => {
 
 
 document.addEventListener('mousedown', function (e) {
-  bubbleDOM.style.visibility = 'hidden';
+  // If the click is outside the bubble, hide it
+  if (bubbleDOM.style.visibility == 'visible' && e.target != bubbleDOM) {
+    bubbleDOM.style.visibility = 'hidden';
+  }
 }, false);
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
